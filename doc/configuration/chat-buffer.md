@@ -47,7 +47,7 @@ require("codecompanion").setup({
 
 ### Prefixes
 
-You can also customize the prefixes that trigger completions for [editor context](/usage/chat-buffer/editor-context), [slash commands](/usage/chat-buffer/slash-commands), and [tools](/usage/chat-buffer/tools):
+You can also customize the prefixes that trigger completions for [editor context](/usage/chat-buffer/editor-context), [slash commands](/usage/chat-buffer/slash-commands), and [tools](/usage/chat-buffer/agents-tools):
 
 ```lua
 require("codecompanion").setup({
@@ -516,7 +516,7 @@ require("codecompanion").setup({
 
 ### Approvals
 
-CodeCompanion allows you to apply safety mechanisms to its built-in tools prior to execution. See the [approvals usage](/usage/chat-buffer/tools#approvals) section for more information.
+CodeCompanion allows you to apply safety mechanisms to its built-in tools prior to execution. See the [approvals usage](/usage/chat-buffer/agents-tools#approvals) section for more information.
 
 ::: code-group
 
@@ -673,7 +673,7 @@ require("codecompanion").setup({
 
 ### Layout
 
-The plugin leverages floating windows to display content to a user in a variety of scenarios, such as with the [debug window](/usage/chat-buffer/#messages) or agent [permissions](/usage/chat-buffer/agents.html#permissions). You can change the appearance of the chat buffer by changing the `display.chat.window` table in your configuration.
+The plugin leverages floating windows to display content to a user in a variety of scenarios, such as with the [debug window](/usage/chat-buffer/#messages). You can change the appearance of the chat buffer by changing the `display.chat.window` table in your configuration.
 
 ::: code-group
 
@@ -703,14 +703,16 @@ require("codecompanion").setup({
     chat = {
       window = {
         buflisted = false, -- List the chat buffer in the buffer list?
-        sticky = false, -- Chat buffer remains open when switching tabs
+        sticky = false, -- Chat window follows when switching tabs
 
-        layout = "vertical", -- float|vertical|horizontal|buffer
+        layout = "vertical", -- float|vertical|horizontal|tab|buffer
         full_height = true, -- for vertical layout
         position = nil, -- left|right|top|bottom (nil will default depending on vim.opt.splitright|vim.opt.splitbelow)
 
+        -- NOTE: You can set these to 0 for auto width/height
         width = 0.5, ---@return number|fun(): number
         height = 0.8, ---@return number|fun(): number
+
         border = "single",
         relative = "editor",
 

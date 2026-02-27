@@ -91,10 +91,6 @@ return {
           path = "interactions.chat.tools.builtin.files",
           description = "Update the file system with the LLM's response",
         },
-        ["next_edit_suggestion"] = {
-          path = "interactions.chat.tools.builtin.next_edit_suggestion",
-          description = "Suggest and jump to the next position to edit",
-        },
         ["memory"] = {
           path = "interactions.chat.tools.builtin.memory",
           description = "The memory tool enables Claude to store and retrieve information across conversations through a memory file directory",
@@ -328,6 +324,13 @@ return {
             has_params = true,
           },
         },
+        ["buffers"] = {
+          path = "interactions.chat.editor_context.buffers",
+          description = "Share all open buffers with the LLM",
+          opts = {
+            contains_code = true,
+          },
+        },
         ["foo"] = {
           path = "tests.interactions.chat.editor_context.foo",
           description = "foo",
@@ -410,9 +413,9 @@ return {
     },
   },
   mcp = {
-    auto_start = true,
     servers = {},
     opts = {
+      default_servers = {},
       acp_enabled = true, -- Enable MCP servers with ACP adapters?
       timeout = 10e3,
     },
@@ -496,7 +499,7 @@ return {
       show_settings = false,
       window = {
         buflisted = false, -- List the chat buffer in the buffer list?
-        sticky = false, -- Chat buffer remains open when switching tabs
+        sticky = false, -- Chat window follows when switching tabs
 
         layout = "vertical", -- float|vertical|horizontal|buffer
         full_height = true, -- for vertical layout
