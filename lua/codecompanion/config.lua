@@ -259,10 +259,6 @@ The user is working on a %s machine. Please respond with system specific command
             require_approval_before = true,
           },
         },
-        ["next_edit_suggestion"] = {
-          path = "interactions.chat.tools.builtin.next_edit_suggestion",
-          description = "Suggest and jump to the next position to edit",
-        },
         ["read_file"] = {
           path = "interactions.chat.tools.builtin.read_file",
           description = "Read a file in the current working directory",
@@ -865,10 +861,9 @@ The user is working on a %s machine. Please respond with system specific command
   },
   -- MCP SERVERS ----------------------------------------------------------------
   mcp = {
-    add_to_chat = true,
-    auto_start = true,
     servers = {},
     opts = {
+      default_servers = {}, -- List of server names to auto-start and add to chat
       acp_enabled = true, -- Enable MCP servers with ACP adapters?
       timeout = 30e3, -- Timeout for MCP server responses (milliseconds)
     },
@@ -1003,9 +998,9 @@ The user is working on a %s machine. Please respond with system specific command
       -- Window options for the chat buffer
       window = {
         buflisted = false, -- List the chat buffer in the buffer list?
-        sticky = false, -- Chat buffer remains open when switching tabs
+        sticky = false, -- Chat window follows when switching tabs
 
-        layout = "vertical", -- float|vertical|horizontal|buffer
+        layout = "vertical", -- float|vertical|horizontal|tab|buffer
         full_height = true, -- for vertical layout
         position = nil, -- left|right|top|bottom (nil will default depending on vim.opt.splitright|vim.opt.splitbelow)
 
